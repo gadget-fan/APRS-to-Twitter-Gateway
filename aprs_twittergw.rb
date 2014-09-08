@@ -35,7 +35,8 @@ class Aprs
    end
 
    def send_msg(msg)
-		puts "Debug(Incomming): #{msg}"
+		msg.gsub!(/TWIT.*R/, "")
+		puts "Debug(Sending to Twitter): #{msg}"
 		$client.update("#{msg}")
     end
   
