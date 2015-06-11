@@ -29,7 +29,7 @@ class Aprs
   
   def msg_dis(msg)
 	Thread.new do
-	msg.gsub!(/>.*::/, "->").gsub!(/\s.*:/, ": ")
+	msg.gsub!(/>.*::/, "->").gsub!(/\s.*:/, ": ").gsub!(/{.*/, "")
 	puts self.send_msg(msg) if msg =~ /#{@call.upcase}/ 
 		end
    end
@@ -76,6 +76,6 @@ end
   
   aprs = Aprs.new("second.aprs.net", 20157, "your_callsign_here")
   aprs.connect
-  aprs.packet("=4158.19N/08556.81W-", "Twitter Gateway YOUR MSG HERE")
+  aprs.packet("=4158.19N/08556.81W$", "Twitter Gateway YOUR MSG HERE")
   aprs.msg_loop
   
